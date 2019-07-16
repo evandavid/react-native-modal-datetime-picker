@@ -57,13 +57,15 @@ export default class CustomDatePickerIOS extends React.PureComponent {
   state = {
     date: this.props.date,
     userIsInteractingWithPicker: false,
-    minuteInterval: this.props.minuteInterval || 1
+    minuteInterval: this.props.minuteInterval || 1,
+    lastDate: this.props.date
   };
 
   static getDerivedStateFromProps(props, state) {
-    if (props.date.valueOf() !== state.date.valueOf()) {
+    if (props.date.valueOf() !== state.lastDate.valueOf()) {
       return {
-        date: props.date
+        date: props.date,
+        lastDate: props.date
       };
     }
 
